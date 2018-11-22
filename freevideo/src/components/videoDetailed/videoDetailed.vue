@@ -9,67 +9,19 @@
       </div>
       <div class="videoInfo">
         <div class="videoInfo-content">
+          <p class="videoInfo-content-name">{{videoData.title}}</p>
           <div class="videoInfo-content-left">
-            <p class="videoInfo-content-name">{{videoData.title}}</p>
             <img class="videoInfo-content-img" :src="videoData.img" alt="">
           </div>
           <div class="videoInfo-content-right">
-            <div>
-              <span>导演:</span>
-              <a href="javascript:;">鲁本·弗雷斯彻</a>
-            </div>
-            <div>
-              <span>编剧:</span>
-              <a href="javascript:;">杰夫·皮克纳 /</a>
-              <a href="javascript:;">斯科特·罗森伯格 /</a>
-              <a href="javascript:;">凯莉·马塞尔 /</a>
-              <a href="javascript:;">托德·麦克法兰 /</a>
-              <a href="javascript:;">戴维·麦克法兰</a>
-            </div>
-            <div>
-              <span>主演:</span>
-              <a href="javascript:;">汤姆·哈迪 /</a>
-              <a href="javascript:;">米歇尔·威廉姆斯 /</a>
-              <a href="javascript:;">里兹·阿迈德 /</a>
-              <a href="javascript:;">斯科特·黑兹 /</a>
-              <a href="javascript:;">瑞德·斯科特 /</a>
-              <a href="javascript:;">更多...</a>
-            </div>
-            <div>
-              <span>类型:</span>
-              <a href="javascript:;">动作 /</a>
-              <a href="javascript:;">科幻 /</a>
-              <a href="javascript:;">惊悚</a>
-            </div>
-            <div>
-              <span>官方网站:</span>
-              <a href="javascript:;">www.venom.movie/site/</a>
-            </div>
-            <div>
-              <span>制片国家/地区:</span>
-              <span>美国 / 中国大陆</span>
-            </div>
-            <div>
-              <span>语言:</span>
-              <span>英语 / 汉语普通话</span>
-            </div>
-            <div>
-              <span>上映日期:</span>
-              <span>2018-11-09(中国大陆) / 2018-10-05(美国)</span>
-            </div>
-            <div>
-              <span>片长:</span>
-              <span>
-                112分钟 / 107分钟(中国大陆)
-              </span>
-            </div>
+            <castlist></castlist>
           </div>
         </div>
       </div>
-      <div>
+      <div class="tab-bar">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="影片介绍" name="first">{{videoData.introduce}}</el-tab-pane>
-          <el-tab-pane label="在线观看" name="second">配置管理</el-tab-pane>
+          <el-tab-pane label="在线观看" name="second"><a href="javascript:;" @click="toVideo()">源地址1</a></el-tab-pane>
           <el-tab-pane label="迅雷下载" name="third">角色管理</el-tab-pane>
         </el-tabs>
       </div>
@@ -78,9 +30,11 @@
 </template>
 <script>
   import topbar from "@/common/topbar";
+  import castlist from "@/common/castlist";
   export default {
     components: {
       topbar,
+      castlist,
     },
     data() {
       return {
@@ -101,7 +55,15 @@
     methods: {
       handleClick(tab, event) {
         console.log(tab, event);
-      }
+      },
+      toVideo(){
+        this.$router.push({
+          name:'影片播放',
+          params:{
+
+          }
+        })
+      },
     }
   };
 
@@ -111,37 +73,31 @@
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
-
     .main {
       width: 1200px;
       margin: auto;
       box-sizing: border-box;
       overflow: hidden;
-
       .breadcrumb {
         margin: 20px 0;
       }
-
       .videoInfo {
         width: 100%;
         box-sizing: border-box;
         overflow: hidden;
-
         &-content {
           width: 100%;
           box-sizing: border-box;
           overflow: hidden;
-
           &-left {
-            width: 50%;
+            float: left;
             box-sizing: border-box;
-
+            margin-right: 40px;
             &-name {
               font-size: 28px;
               color: #999;
               text-shadow: 2px 1px 1px #666;
             }
-
             &-img {
               margin-top: 20px;
               max-width: 240px;
@@ -149,15 +105,22 @@
               width: 100%;
             }
           }
-
-          &-right {}
-
+          &-right {
+            float: left;
+            box-sizing: border-box;
+            overflow: hidden;
+          }
           &-introduce {
-            font-size: 20px;
+            font-size: 18px;
             color: #666;
             margin-top: 20px;
           }
         }
+      }
+      .tab-bar{
+        margin-top: 40px;
+        box-sizing: border-box;
+        overflow: hidden;
       }
     }
   }

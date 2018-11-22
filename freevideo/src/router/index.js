@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import index from '@/components/index/index'
 import videoList from '@/components/videoList/videoList'
 import videoDetailed from '@/components/videoDetailed/videoDetailed'
+import videoPlay from '@/components/videoPlay/videoPlay'
 
 import VueRouter from 'vue-router';
 
@@ -23,6 +24,10 @@ export default new Router({
       path: '/videoDetailed/videoDetailed',
       name: '详情页',
       component: videoDetailed
+    },,{
+      path: '/videoPlay/videoPlay',
+      name: '影片播放',
+      component: videoPlay
     },
   ]
 });
