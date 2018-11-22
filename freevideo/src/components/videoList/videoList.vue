@@ -9,7 +9,7 @@
       </div>
       <div class="videoInfo">
         <ul class="list">
-          <li class="item" v-for="(item,index) in videoList" :key="index">
+          <li class="item" v-for="(item,index) in videoList" :key="index" @click="turn(item)">
             <img src="../../assets/img/logo.png" alt="">
             <p v-text="item.title"></p>
           </li>
@@ -65,7 +65,16 @@
       };
     },
     created() {},
-    methods: {}
+    methods: {
+      turn(item){
+        this.$router.push({
+          path:'/videoDetailed/videoDetailed',
+          query:{
+            item:item
+          }
+        })
+      }
+    }
   };
 
 </script>
