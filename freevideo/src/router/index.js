@@ -6,11 +6,9 @@ import videoList from '@/components/videoList/videoList'
 import videoDetailed from '@/components/videoDetailed/videoDetailed'
 import videoPlay from '@/components/videoPlay/videoPlay'
 
-import VueRouter from 'vue-router';
-
 Vue.use(Router)
 
-export default new Router({
+var router =  new Router({
   mode: 'history',
   routes: [{
       path: '/',
@@ -32,10 +30,29 @@ export default new Router({
   ]
 });
 
-var routerList = [];
-
-var router = new VueRouter({})
+var routeList = [];
 
 router.beforeEach((to,from,next)=>{
-
+  let w =  "";
+  let index = null;
+  for(let i=0;i<routeList.length;i++){
+    // console.log(routeList[i].name);
+    w += routeList[i].name;
+    index = i;
+    console.log(w);
+  }
+  // console.log('我是router里的to.name   ',to.name);
+  if(w.indexOf(to.name) !== -1 ){
+    routeList.splice(index+1,routeList.length - index - 1);
+    console.log('routeList---',routeList);
+  }else{
+    let crumb = {};
+    crumb.name = to.name;
+    crumb.path = to.path;
+    routeList.push(crumb);
+    // console.log('routeList+++',routeList);
+  }
+  to.meta.routeList = routeList
+  next();
 })
+export default router;

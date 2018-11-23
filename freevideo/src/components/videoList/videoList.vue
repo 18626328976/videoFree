@@ -4,7 +4,7 @@
     <div class="main">
       <div class="breadcrumb">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item v-for="(item,index) in crumbData" :key="index" @click="turn()">首页</el-breadcrumb-item>
+          <el-breadcrumb-item v-for="(item,index) in crumbData" :key="index" :to="{ path: item.path }" >{{item.name}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <div class="videoInfo">
@@ -26,9 +26,7 @@
     },
     data() {
       return {
-        crumbData: [{
-          title: ""
-        }],
+        crumbData: [],
         videoList: [{
             img: "../../assets/img/logo.png",
             title: "Vue.js"
@@ -64,13 +62,26 @@
         ]
       };
     },
-    created() {},
+    // 面包屑控制
+    beforeRouteEnter(to, from, next) {
+      next(vm => {
+        // console.log('我是to.meta.routeList  ',to.meta.routeList);
+        vm.crumbData = to.meta.routeList;
+        // console.log(vm);
+      })
+    },
+    created() {
+      
+    },
+    mounted() {
+      
+    },
     methods: {
-      turn(item){
+      turn(item) {
         this.$router.push({
-          path:'/videoDetailed/videoDetailed',
-          query:{
-            item:item
+          path: '/videoDetailed/videoDetailed',
+          query: {
+            item: item
           }
         })
       }
@@ -83,18 +94,22 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+
     .main {
       width: 1200px;
       margin: 0 auto;
       box-sizing: border-box;
       overflow: hidden;
+
       .breadcrumb {
         margin: 20px 0;
       }
+
       .videoInfo {
         width: 100%;
         box-sizing: border-box;
         overflow: hidden;
+
         .list {
           width: 100%;
           box-sizing: border-box;
@@ -102,12 +117,14 @@
           display: flex;
           justify-content: space-between;
           flex-wrap: wrap;
+
           .item {
             width: 210px;
             height: 240px;
             text-align: center;
             transition: all .3s ease-in 0s;
-            &:hover{
+
+            &:hover {
               transform: scale(1.2);
             }
           }

@@ -4,7 +4,7 @@
     <div class="main">
       <div class="breadcrumb">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item v-for="(item,index) in crumbData" :key="index" @click="turn()">首页</el-breadcrumb-item>
+          <el-breadcrumb-item v-for="(item,index) in crumbData" :key="index" :to="{ path: item.path }" >{{item.name}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <div class="videoInfo">
@@ -48,6 +48,14 @@
           title: ""
         }],
       };
+    },
+    // 面包屑控制
+    beforeRouteEnter(to, from, next) {
+      next(vm => {
+        // console.log('我是to.meta.routeList  ',to.meta.routeList);
+        vm.crumbData = to.meta.routeList;
+        // console.log(vm);
+      })
     },
     created() {
       console.log(this.$route.query.item);
