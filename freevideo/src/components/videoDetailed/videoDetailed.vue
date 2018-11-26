@@ -38,15 +38,15 @@
     },
     data() {
       return {
+        crumbData: [{
+          title: ""
+        }],
         videoData: {
           img: require("../../assets/img/logo.png"),
           title: "Vue.js",
           introduce: '身为记者的埃迪·布洛克（汤姆·哈迪饰）在调查生命基金会老板卡尔顿·德雷克（里兹·阿迈德饰）的过程中，事业遭受重创，与未婚妻安妮·韦英（米歇尔·威廉姆斯饰）的关系岌岌可危，并意外被外星共生体入侵，历经挣扎对抗，最终成为拥有强大超能力，无人可挡的“毒液”.',
         },
         activeName: 'first',
-        crumbData: [{
-          title: ""
-        }],
       };
     },
     // 面包屑控制

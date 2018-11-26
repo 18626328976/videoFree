@@ -8,51 +8,55 @@ import videoPlay from '@/components/videoPlay/videoPlay'
 
 Vue.use(Router)
 
-var router =  new Router({
+var router = new Router({
   mode: 'history',
   routes: [{
-      path: '/',
-      name: '首页',
-      component: index
-    },{
-      path: '/videoList/videoList',
-      name: '主页',
-      component: videoList
-    },{
-      path: '/videoDetailed/videoDetailed',
-      name: '详情页',
-      component: videoDetailed
-    },,{
-      path: '/videoPlay/videoPlay',
-      name: '影片播放',
-      component: videoPlay
-    },
-  ]
+    path: '/',
+    name: '首页',
+    component: index
+  }, {
+    path: '/videoList/videoList',
+    name: '主页',
+    component: videoList
+  }, {
+    path: '/videoDetailed/videoDetailed',
+    name: '详情页',
+    component: videoDetailed
+  }, , {
+    path: '/videoPlay/videoPlay',
+    name: '影片播放',
+    component: videoPlay
+  }, ]
 });
 
+//储存路由信息
 var routeList = [];
 
-router.beforeEach((to,from,next)=>{
-  let w =  "";
-  let index = null;
-  for(let i=0;i<routeList.length;i++){
-    // console.log(routeList[i].name);
-    w += routeList[i].name;
-    index = i;
+// 每次跳转路由前都会调用
+router.beforeEach((to, from, next) => {
+
+  let w = [];
+  // 把路由的信息存在里面
+  for (let i = 0; i < routeList.length; i++) {
+    w.push(routeList[i].name);
     console.log(w);
   }
-  // console.log('我是router里的to.name   ',to.name);
-  if(w.indexOf(to.name) !== -1 ){
-    routeList.splice(index+1,routeList.length - index - 1);
-    console.log('routeList---',routeList);
-  }else{
-    let crumb = {};
-    crumb.name = to.name;
-    crumb.path = to.path;
-    routeList.push(crumb);
-    // console.log('routeList+++',routeList);
+  // 如果有同样的就删除后面所有的
+  for (let i = 0; i < w.length; i++) {
+    if (w[i] == to.name) {
+      routeList.splice(i, routeList.length - i + 1);
+    }
   }
+  // 储存路由
+  let crumb = {};
+  crumb.name = to.name;
+  crumb.path = to.path;
+  routeList.push(crumb);
+  // console.log('routeList+++',routeList);
+
+  // 把值赋给to.meta.routeList
   to.meta.routeList = routeList
+  // next是必须的!!!
   next();
 })
 export default router;
