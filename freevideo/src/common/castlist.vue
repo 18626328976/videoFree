@@ -6,25 +6,25 @@
     </div>
     <div>
       <span>编剧:</span>
-      <a href="javascript:;">杰夫·皮克纳 /</a>
-      <a href="javascript:;">斯科特·罗森伯格 /</a>
-      <a href="javascript:;">凯莉·马塞尔 /</a>
-      <a href="javascript:;">托德·麦克法兰 /</a>
+      <a href="javascript:;">杰夫·皮克纳</a>/
+      <a href="javascript:;">斯科特·罗森伯格</a>/
+      <a href="javascript:;">凯莉·马塞尔</a>/
+      <a href="javascript:;">托德·麦克法兰</a>/
       <a href="javascript:;">戴维·麦克法兰</a>
     </div>
     <div>
       <span>主演:</span>
-      <a href="javascript:;">汤姆·哈迪 /</a>
-      <a href="javascript:;">米歇尔·威廉姆斯 /</a>
-      <a href="javascript:;">里兹·阿迈德 /</a>
-      <a href="javascript:;">斯科特·黑兹 /</a>
-      <a href="javascript:;">瑞德·斯科特 /</a>
+      <a href="javascript:;">汤姆·哈迪</a>/
+      <a href="javascript:;">米歇尔·威廉姆斯</a>/
+      <a href="javascript:;">里兹·阿迈德</a>/
+      <a href="javascript:;">斯科特·黑兹</a>/
+      <a href="javascript:;">瑞德·斯科特</a>/
       <a href="javascript:;">更多...</a>
     </div>
     <div>
       <span>类型:</span>
-      <a href="javascript:;">动作 /</a>
-      <a href="javascript:;">科幻 /</a>
+      <a href="javascript:;">动作</a>/
+      <a href="javascript:;">科幻</a>/
       <a href="javascript:;">惊悚</a>
     </div>
     <div>
@@ -55,7 +55,9 @@
   export default {
     data() {
       return {
-
+        data:[{
+          
+        }]
       }
     },
     methods: {
@@ -69,6 +71,25 @@
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
+    span{
+      font-size: 16px;
+      color: #666;
+    }
+    a{
+      text-decoration: none;
+      font-size: 16px;
+      color: #37a;
+      &::visited{
+        color: #666699;
+        font-size: 16px;
+        text-decoration: none;
+      }
+      &:hover{
+        color: #FFFFFF;
+        text-decoration: none;
+        background: #37a;
+      }
+    }
   }
 
 </style>
